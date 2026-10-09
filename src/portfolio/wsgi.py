@@ -6,7 +6,11 @@ gh = github.Github()
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template(
+        'index.html',
+        git_commit_count= gh.get_commits(),
+        git_repo_count = gh.get_repos()
+    )
 
 if __name__ == '__main__':
     app.run(debug=True)
