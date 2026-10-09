@@ -1,0 +1,6 @@
+"$schema" = "node_modules/wrangler/config-schema.json"
+name = "my-flask-worker"
+main = "src/portfolio/main.py"
+# Set this to today's date
+compatibility_date = "2026-10-09"
+compatibility_flags = [ "python_workers" ]
