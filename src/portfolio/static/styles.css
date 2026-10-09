@@ -1,5 +1,5 @@
 .sidebar {
-    background-color: #ff0000;
+    background-color: #aaaaaa;
     position: fixed;
     height: 100%;
     width: 15%;
@@ -8,4 +8,19 @@
 .content {
     margin-left: 15%;
     height: 100%;
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+}
+
+.divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #000;
+}
+
+.divider::after {
+    margin-left: 10px;
 }
