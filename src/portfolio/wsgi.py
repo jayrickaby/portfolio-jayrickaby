@@ -10,8 +10,7 @@ def hello_world():
 
 @app.route('/github')
 def github():
-    message: str = f"repos: {gh.get_repos()}"
-    return render_template('git-summary.html', message=message)
+    return render_template('git-summary.html', repo_count=gh.get_repos())
 
 if __name__ == '__main__':
     app.run()
