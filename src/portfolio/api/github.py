@@ -17,3 +17,9 @@ class Github:
             return self._user_data["bio"]
 
         return ""
+
+    def get_repos(self) -> int:
+        if "public_repos" in self._user_data:
+            return self._user_data["public_repos"]
+
+        return 0

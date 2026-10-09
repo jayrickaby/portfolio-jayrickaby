@@ -10,7 +10,7 @@ def hello_world():
 
 @app.route('/github')
 def github():
-    return f"bio: {gh.get_bio()}"
+    return f"repos: {gh.get_repos()}"
 
 if __name__ == '__main__':
     app.run(debug=True)
