@@ -2,11 +2,15 @@ from dotenv import load_dotenv
 from flask import Flask, render_template
 
 from api import github
+from api import hackatime
 
 load_dotenv()
 
 app = Flask(__name__)
 gh = github.Github()
+ht = hackatime.Hackatime()
+
+print(ht.get_latest_projects())
 
 @app.route('/')
 def index():
