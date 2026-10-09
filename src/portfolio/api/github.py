@@ -1,25 +1,50 @@
+import calendar
 import requests
+import time
 
 class Github:
     def __init__(self):
-        self._USER_NAME: str = "jayrickaby"
+        self._CACHE_TIME: int = 900 # 15 minutes * 60 seconds
         self._API_URL: str = f"https://api.github.com"
+        self._USER_NAME: str = "jayrickaby"
 
+        self._last_cache_time: int = 0
+
+        self._commit_count: int = 0
+        self._merge_count: int = 0
         self._user_data: dict = {}
 
-        self.refresh_data()
-
-    def refresh_data(self) -> None:
-        user_url = f"{self._API_URL}/users/{self._USER_NAME}"
-        self._user_data = requests.get(user_url).json()
-
     def get_bio(self) -> str:
+        if self._should_refresh_cache():
+            self._refresh_cache()
+
         if "bio" in self._user_data:
             return self._user_data["bio"]
 
         return ""
 
-    def get_commits(self) -> int:
+    def get_commit_count(self) -> int:
+        if self._should_refresh_cache():
+            self._refresh_cache()
+
+        return self._commit_count
+
+    def get_merge_count(self) -> int:
+        if self._should_refresh_cache():
+            self._refresh_cache()
+
+        return self._merge_count
+
+    def get_repo_count(self) -> int:
+        if self._should_refresh_cache():
+            self._refresh_cache()
+
+        if "public_repos" in self._user_data:
+            return self._user_data["public_repos"]
+
+        return 0
+
+    def _refresh_commit_count(self):
         params = {
             "q": "author:jayrickaby", "per_page": 1
         }
@@ -27,11 +52,11 @@ class Github:
         data = requests.get(f"{self._API_URL}/search/commits", params=params).json()
 
         if "total_count" in data:
-            return data["total_count"]
+            self._commit_count = data["total_count"]
+        else:
+            self._commit_count = 0
 
-        return 0
-
-    def get_merges(self) -> int:
+    def _refresh_merge_count(self):
         params = {
             "q": "author:jayrickaby is:pr is:merged", "per_page": 1
         }
@@ -39,12 +64,26 @@ class Github:
         data = requests.get(f"{self._API_URL}/search/issues", params=params).json()
 
         if "total_count" in data:
-            return data["total_count"]
+            self._merge_count = data["total_count"]
+        else:
+            self._merge_count = 0
 
-        return 0
+    def _refresh_user_data(self) -> None:
+        user_url = f"{self._API_URL}/users/{self._USER_NAME}"
+        self._user_data = requests.get(user_url).json()
 
-    def get_repos(self) -> int:
-        if "public_repos" in self._user_data:
-            return self._user_data["public_repos"]
+    def _should_refresh_cache(self) -> bool:
+        current_time = calendar.timegm(time.gmtime())
+        cache_time = self._last_cache_time + self._CACHE_TIME
 
-        return 0
+        if (current_time < cache_time):
+            return False
+
+        return True
+
+    def _refresh_cache(self) -> None:
+        self._refresh_commit_count()
+        self._refresh_merge_count()
+        self._refresh_user_data()
+
+        self._last_cache_time = calendar.timegm(time.gmtime())

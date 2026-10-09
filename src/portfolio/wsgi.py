@@ -8,9 +8,9 @@ gh = github.Github()
 def index():
     return render_template(
         'index.html',
-        git_commit_count= gh.get_commits(),
-        git_merge_count= gh.get_merges(),
-        git_repo_count = gh.get_repos()
+        git_commit_count= gh.get_commit_count(),
+        git_merge_count= gh.get_merge_count(),
+        git_repo_count = gh.get_repo_count()
     )
 
 if __name__ == '__main__':
