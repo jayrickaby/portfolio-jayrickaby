@@ -12,8 +12,13 @@ class Hackatime (ApiTemplate):
         self._latest_projects: dict = {}
 
     def get_latest_projects(self):
-        self._refresh_latest_projects()
+        if self._should_refresh_cache():
+            self._refresh_cache()
+
         return self._latest_projects
+
+    def _refresh_cache(self):
+        self._refresh_latest_projects()
 
     def _refresh_latest_projects(self):
         raw_names: dict = requests.get(f"{self._API_URL}/api/v1/users/{self._USER_NAME}/projects").json() or {}
