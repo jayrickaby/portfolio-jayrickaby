@@ -9,6 +9,7 @@ def index():
     return render_template(
         'index.html',
         git_commit_count= gh.get_commits(),
+        git_merge_count= gh.get_merges(),
         git_repo_count = gh.get_repos()
     )
 

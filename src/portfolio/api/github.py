@@ -21,10 +21,22 @@ class Github:
 
     def get_commits(self) -> int:
         params = {
-            "q": "author:jayrickaby"
+            "q": "author:jayrickaby", "per_page": 1
         }
 
         data = requests.get(f"{self._API_URL}/search/commits", params=params).json()
+
+        if "total_count" in data:
+            return data["total_count"]
+
+        return 0
+
+    def get_merges(self) -> int:
+        params = {
+            "q": "author:jayrickaby is:pr is:merged", "per_page": 1
+        }
+
+        data = requests.get(f"{self._API_URL}/search/issues", params=params).json()
 
         if "total_count" in data:
             return data["total_count"]
