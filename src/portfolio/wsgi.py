@@ -13,4 +13,4 @@ def github():
     return render_template('git-summary.html', repo_count=gh.get_repos())
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
