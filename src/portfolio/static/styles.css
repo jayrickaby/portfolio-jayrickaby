@@ -24,3 +24,8 @@
 .divider::after {
     margin-left: 10px;
 }
+
+.project-item {
+    display: flex;
+    justify-content: space-between;
+}

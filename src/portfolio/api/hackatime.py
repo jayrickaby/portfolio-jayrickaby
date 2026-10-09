@@ -74,5 +74,4 @@ class Hackatime (ApiTemplate):
                 "lastEditTime": time_str
             })
 
-        print(projects)
         self._latest_projects = projects
