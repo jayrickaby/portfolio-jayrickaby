@@ -1,14 +1,14 @@
 
+from portfolio.api.apitemplate import ApiTemplate
 
 import requests
 
-class Hackatime:
+class Hackatime (ApiTemplate):
     def __init__(self):
-        self._CACHE_TIME: int = 900 # 15 minutes * 60 seconds
+        super().__init__()
         self._API_URL: str = f"https://hackatime.hackclub.com"
         self._USER_NAME: str = "jayrickaby"
 
-        self._last_cache_time: int = 0
         self._latest_projects: dict = {}
 
     def get_latest_projects(self):
