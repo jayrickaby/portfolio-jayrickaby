@@ -1,0 +1,11 @@
+.sidebar {
+    background-color: #ff0000;
+    position: fixed;
+    height: 100%;
+    width: 15%;
+}
+
+.content {
+    margin-left: 15%;
+    height: 100%;
+}
