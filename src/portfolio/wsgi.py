@@ -1,8 +1,14 @@
+from dotenv import load_dotenv
 from flask import Flask, render_template
+
 from api import github
+from api import hackatime
+
+load_dotenv()
 
 app = Flask(__name__)
 gh = github.Github()
+ht = hackatime.Hackatime()
 
 @app.route('/')
 def index():
@@ -10,7 +16,8 @@ def index():
         'index.html',
         git_commit_count= gh.get_commit_count(),
         git_merge_count= gh.get_merge_count(),
-        git_repo_count = gh.get_repo_count()
+        git_repo_count = gh.get_repo_count(),
+        hackatime_current_projects = ht.get_latest_projects()
     )
 
 if __name__ == '__main__':

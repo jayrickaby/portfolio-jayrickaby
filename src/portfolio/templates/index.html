@@ -32,8 +32,9 @@
             <div class="current-projects">
                 <div class="divider">Current Projects</div>
                 <ul>
-                    <li>jayrickaby-portfolio 5m</li>
-                    <li>sevenPad 1d</li>
+                    {% for project in hackatime_current_projects %}
+                        <li>{{ project.name }} {{ project.lastEditTime }}</li>
+                    {% endfor %}
                 </ul>
             </div>
 
