@@ -2,11 +2,18 @@ import requests
 
 class Github:
     def __init__(self):
-        self._USERNAME: str = "jayrickaby"
-        self._USERURL: str = f"https://api.github.com/users/{self._USERNAME}"
+        self._USER_NAME: str = "jayrickaby"
+        self._USER_URL: str = f"https://api.github.com/users/{self._USER_NAME}"
 
-    def get_bio(self):
-        data: dict = requests.get(self._USERURL).json()
+        self._user_data: dict = {}
 
-        return data["bio"]
+        self.refresh_data()
 
+    def refresh_data(self) -> None:
+        self._user_data = requests.get(self._USER_URL).json()
+
+    def get_bio(self) -> str:
+        if "bio" in self._user_data:
+            return self._user_data["bio"]
+
+        return ""
