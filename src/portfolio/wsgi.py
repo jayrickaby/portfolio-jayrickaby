@@ -10,15 +10,14 @@ app = Flask(__name__)
 gh = github.Github()
 ht = hackatime.Hackatime()
 
-print(ht.get_latest_projects())
-
 @app.route('/')
 def index():
     return render_template(
         'index.html',
         git_commit_count= gh.get_commit_count(),
         git_merge_count= gh.get_merge_count(),
-        git_repo_count = gh.get_repo_count()
+        git_repo_count = gh.get_repo_count(),
+        hackatime_current_projects = ht.get_latest_projects()
     )
 
 if __name__ == '__main__':
