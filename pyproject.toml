@@ -8,5 +8,6 @@ dependencies = [
 
 [dependency-groups]
 dev = [
+    "gunicorn>=26.2.0",
     "pywrangler>=0.0.2",
 ]
