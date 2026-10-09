@@ -6,8 +6,11 @@ class ApiTemplate:
 
         self._last_cache_time: int = 0
 
+    def _get_current_time(self) -> int:
+        return int(datetime.now(timezone.utc).timestamp())
+
     def _should_refresh_cache(self) -> bool:
-        current_time: int = int(datetime.now(timezone.utc).timestamp())
+        current_time: int = self._get_current_time()
 
         cache_time: int = self._last_cache_time + self._CACHE_TIME
 
