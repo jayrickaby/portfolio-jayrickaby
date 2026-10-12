@@ -29,3 +29,27 @@
     display: flex;
     justify-content: space-between;
 }
+
+
+/*  CONTACTS LIST   */
+.icon-list {
+    padding-left: 2em;
+    list-style-type: none;
+}
+
+.icon-list li::before {
+    display: inline-block;
+    margin-right: 0.5em;
+}
+
+.icon-list .bluesky::before {
+    content: url("assets/icons/blusky_12px.png");
+}
+
+.icon-list .discord::before {
+    content: url("assets/icons/discord_12px.png")
+}
+
+.icon-list .email::before {
+    content: url("assets/icons/mail_12px.png");
+}
