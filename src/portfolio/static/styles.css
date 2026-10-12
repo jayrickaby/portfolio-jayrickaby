@@ -43,7 +43,7 @@
 }
 
 .icon-list .bluesky::before {
-    content: url("assets/icons/blusky_12px.png");
+    content: url("assets/icons/bluesky_12px.png");
 }
 
 .icon-list .discord::before {
