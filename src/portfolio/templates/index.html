@@ -49,7 +49,9 @@
                     {% for project in hackatime_current_projects %}
                         <li>
                             <div class="project-item">
-                                <span class="project-name">{{ project.name }}</span>
+                                <span class="project-name">
+                                    <a  href="{{ project.link }}">{{ project.name }}</a>
+                                </span>
                                 <span class="project-time">{{ project.lastEditTime }}</span>
                             </div>
                         </li>
