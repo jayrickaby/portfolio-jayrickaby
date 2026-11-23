@@ -67,9 +67,17 @@
                     <th>Merges</th>
                 </tr>
                 <tr>
-                    <td>{{git_repo_count}}</td>
-                    <td>{{git_commit_count}}</td>
-                    <td>{{git_merge_count}}</td>
+                    <td>
+                        <span class="tooltip">
+                            {{github_repo_count + gitgud_repo_count}}
+                            <span class="tooltiptext">
+                                Github: {{github_commit_count}}<br>
+                                GitGud: {{gitgud_commit_count}}
+                            </span>
+                        </span>
+                    </td>
+                    <td><span class="tooltip">{{github_commit_count + gitgud_commit_count}}<span class="tooliptext"></span></span></td>
+                    <td><span class="tooltip">{{github_merge_count + gitgud_merge_count}}<span class="tooliptext"></span></span></td>
                 </tr>
             </table>
         </div>

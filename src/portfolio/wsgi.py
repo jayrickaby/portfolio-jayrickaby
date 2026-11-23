@@ -16,9 +16,12 @@ ht = hackatime.Hackatime()
 def index():
     return render_template(
         'index.html',
-        git_commit_count= gh.get_commit_count() + gg.get_commit_count(),
-        git_merge_count= gh.get_merge_count() + gg.get_merge_count(),
-        git_repo_count = gh.get_repo_count() + gg.get_repo_count(),
+        github_commit_count= gh.get_commit_count(),
+        github_merge_count= gh.get_merge_count(),
+        github_repo_count = gh.get_repo_count(),
+        gitgud_commit_count = gg.get_commit_count(),
+        gitgud_merge_count = gg.get_merge_count(),
+        gitgud_repo_count = gg.get_repo_count(),
         hackatime_current_projects = ht.get_latest_projects()
     )
 
