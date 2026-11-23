@@ -1,7 +1,7 @@
 from datetime import datetime
 import requests
 
-from portfolio.api.apitemplate import ApiTemplate
+from portfolio.jays_apis.apitemplate import ApiTemplate
 
 class Hackatime (ApiTemplate):
     def __init__(self):

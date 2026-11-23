@@ -1,8 +1,8 @@
 from dotenv import load_dotenv
 from flask import Flask, render_template
 
-from .api import github
-from .api import hackatime
+from .jays_apis import github
+from .jays_apis import hackatime
 
 load_dotenv()
 

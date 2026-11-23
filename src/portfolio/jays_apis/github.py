@@ -1,7 +1,7 @@
 import calendar
 import requests
 
-from portfolio.api.apitemplate import ApiTemplate
+from portfolio.jays_apis.apitemplate import ApiTemplate
 
 
 class Github (ApiTemplate):
