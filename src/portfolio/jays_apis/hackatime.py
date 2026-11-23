@@ -57,6 +57,7 @@ class Hackatime (ApiTemplate):
 
             time = self._convert_time_to_relative(raw_project["last_heartbeat"])
 
+            days, remainder = divmod(time, 86400)
             hours, remainder = divmod(time, 3600)
             minutes = remainder // 60
 
@@ -64,6 +65,8 @@ class Hackatime (ApiTemplate):
 
             if hours >= 168:
                 pass
+            if days >= 7:
+                continue
             if hours >= 1:
                 time_str = f"{hours}h ago"
             elif minutes >= 15:
