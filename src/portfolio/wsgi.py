@@ -1,5 +1,5 @@
 from dotenv import load_dotenv
-from flask import Flask, render_template
+from flask import Flask, redirect, render_template, url_for
 
 from .jays_apis import github
 from .jays_apis import gitgud
@@ -14,6 +14,10 @@ ht = hackatime.Hackatime()
 
 @app.route('/')
 def index():
+    return redirect(url_for("home"))
+
+@app.route('/home')
+def home():
     return render_template(
         'home.html',
         github_commit_count= gh.get_commit_count(),
