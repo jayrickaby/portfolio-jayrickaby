@@ -56,21 +56,23 @@
 
 /* TOOLTIPS */
 .tooltip {
-    position: relative;
     cursor: pointer;
+    position: relative;
 }
 
 .tooltip .tooltiptext {
     background-color: #ffffde;
     border: 1px solid black;
-    visibility: hidden;
-    position: absolute;
     opacity: 0;
-    z-index: 1;
+    padding: 8px;
+    position: absolute;
+    transition: opacity 0.1s;
+    visibility: hidden;
     white-space: nowrap;
+    z-index: 1;
 }
 
 .tooltip:hover .tooltiptext {
-    visibility: visible;
     opacity: 1;
+    visibility: visible;
 }
