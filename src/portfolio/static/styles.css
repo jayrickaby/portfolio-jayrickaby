@@ -61,10 +61,13 @@
 }
 
 .tooltip .tooltiptext {
+    background-color: #ffffde;
+    border: 1px solid black;
     visibility: hidden;
     position: absolute;
     opacity: 0;
     z-index: 1;
+    white-space: nowrap;
 }
 
 .tooltip:hover .tooltiptext {
