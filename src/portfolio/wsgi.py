@@ -15,7 +15,7 @@ ht = hackatime.Hackatime()
 @app.route('/')
 def index():
     return render_template(
-        'index.html',
+        'home.html',
         github_commit_count= gh.get_commit_count(),
         github_merge_count= gh.get_merge_count(),
         github_repo_count = gh.get_repo_count(),

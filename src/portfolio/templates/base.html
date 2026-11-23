@@ -1,7 +1,7 @@
 <html>
     <head>
         <title>
-            Jay's Portfolio
+            {% block title %}Jay's Portfolio{% endblock %}
         </title>
         <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
         <script src="{{ url_for('static', filename='script.js') }}"></script>
@@ -98,7 +98,7 @@
             </table>
         </aside>
         <main class="content">
-            <p>stuff here and stuff there</p>
+            {% block content %}{% endblock %}
         </main>
     </body>
 </html>
