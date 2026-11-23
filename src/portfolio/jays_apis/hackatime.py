@@ -49,11 +49,17 @@ class Hackatime (ApiTemplate):
             raw_project: dict = requests.get(f"{self._API_URL}/api/v1/users/{self._USER_NAME}/project/{name}").json() or {}
 
             if not raw_project:
-                pass
+                continue
             if "name" not in raw_project:
-                pass
+                continue
             if "last_heartbeat" not in raw_project:
-                pass
+                continue
+            if "total_seconds" not in raw_project:
+                continue
+
+            # Skip small / mistakenly recorded projects (< 15 minutes)
+            if raw_project["total_seconds"] < 15 * 60:
+                continue
 
             time = self._convert_time_to_relative(raw_project["last_heartbeat"])
 
