@@ -1,5 +1,5 @@
-import calendar
 import requests
+from loguru import logger
 
 from portfolio.jays_apis.apitemplate import ApiTemplate
 
@@ -73,6 +73,8 @@ class Github (ApiTemplate):
         self._user_data = requests.get(user_url).json()
 
     def _refresh_cache(self) -> None:
+        logger.debug("Refreshing GitHub cache...")
         self._refresh_commit_count()
         self._refresh_merge_count()
         self._refresh_user_data()
+        logger.debug("GitHub cache refreshed")

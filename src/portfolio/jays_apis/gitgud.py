@@ -1,5 +1,5 @@
-import calendar
 import requests
+from loguru import logger
 
 from portfolio.jays_apis.apitemplate import ApiTemplate
 
@@ -72,6 +72,8 @@ class GitGud (ApiTemplate):
             self._repository_count = 0
 
     def _refresh_cache(self) -> None:
+        logger.debug("Refreshing GitGud cache...")
         self._refresh_commit_count()
         self._refresh_merge_count()
         self._refresh_repository_count()
+        logger.debug("GitGud cache refreshed")

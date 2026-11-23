@@ -1,5 +1,6 @@
 from datetime import datetime
 import requests
+from loguru import logger
 
 from portfolio.jays_apis.apitemplate import ApiTemplate
 
@@ -27,7 +28,9 @@ class Hackatime (ApiTemplate):
         return time
 
     def _refresh_cache(self):
+        logger.debug("Refreshing HackaTime cache...")
         self._refresh_latest_projects()
+        logger.debug("Hackatime cache refreshed")
 
     def _refresh_latest_projects(self):
         raw_names: dict = requests.get(f"{self._API_URL}/api/v1/users/{self._USER_NAME}/projects").json() or {}
