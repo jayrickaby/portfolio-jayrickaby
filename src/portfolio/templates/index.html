@@ -60,9 +60,18 @@
             </div>
 
             <hr>
-            <p>Repos: {{git_repo_count}}</p>
-            <p>Commits: {{git_commit_count}}</p>
-            <p>Merge Requests: {{git_merge_count}}</p>
+            <table>
+                <tr>
+                    <th>Repos</th>
+                    <th>Commits</th>
+                    <th>Merges</th>
+                </tr>
+                <tr>
+                    <td>{{git_repo_count}}</td>
+                    <td>{{git_commit_count}}</td>
+                    <td>{{git_merge_count}}</td>
+                </tr>
+            </table>
         </div>
         <div class="content">
             <p>stuff here and stuff there</p>
