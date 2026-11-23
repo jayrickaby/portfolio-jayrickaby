@@ -74,10 +74,23 @@ class Hackatime (ApiTemplate):
             else:
                 time_str = "Now"
 
-            projects.append({
+            new_project = {
                 "name": raw_project["name"] or "",
                 "link": raw_project["repo_url"] or "",
-                "lastEditTime": time_str
-            })
+                "lastEditTime": time_str,
+                "rawTime": time,
+            }
+
+            total = len(projects)
+
+            if total == 0:
+                projects.append(new_project)
+                continue
+
+            for i in range(total):
+                if i == total - 1 or projects[i]["rawTime"] > time:
+                    projects.insert(i, new_project)
+                    break
+
 
         self._latest_projects = projects
