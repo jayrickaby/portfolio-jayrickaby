@@ -33,26 +33,26 @@ class GitGud (ApiTemplate):
         return self._repository_count
 
     def _refresh_commit_count(self):
-        data = requests.get(f"{self._API_URL}/users/{self._USER_ID}/events?action=pushed").json()
+        data = requests.get(f"{self._API_URL}/users/{self._USER_ID}/events?action=pushed&per_page=1").headers
 
-        if data:
-            self._commit_count = len(data)
+        if "x-total" in data:
+            self._commit_count = int(data["x-total"])
         else:
             self._commit_count = 0
 
     def _refresh_merge_count(self):
-        data = requests.get(f"{self._API_URL}/merge_requests?author_id={self._USER_ID}&scope=all").json()
+        data = requests.get(f"{self._API_URL}/merge_requests?author_id={self._USER_ID}&scope=all&per_page=1").headers
 
-        if data:
-            self._merge_count = len(data)
+        if "x-total" in data:
+            self._merge_count = int(data["x-total"])
         else:
             self._merge_count = 0
 
     def _refresh_repository_count(self) -> None:
-        data = requests.get(f"{self._API_URL}/users/{self._USER_ID}/projects").json()
+        data = requests.get(f"{self._API_URL}/users/{self._USER_ID}/projects?per_page=1").headers
 
-        if data:
-            self._repository_count = len(data)
+        if "x-total" in data:
+            self._repository_count = int(data["x-total"])
         else:
             self._repository_count = 0
 
