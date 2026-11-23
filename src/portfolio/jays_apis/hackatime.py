@@ -64,7 +64,7 @@ class Hackatime (ApiTemplate):
             time = self._convert_time_to_relative(raw_project["last_heartbeat"])
 
             days, remainder = divmod(time, 86400)
-            hours, remainder = divmod(time, 3600)
+            hours, remainder = divmod(remainder, 3600)
             minutes = remainder // 60
 
             time_str: str = ""
@@ -87,16 +87,8 @@ class Hackatime (ApiTemplate):
                 "rawTime": time,
             }
 
-            total = len(projects)
+            projects.append(new_project)
 
-            if total == 0:
-                projects.append(new_project)
-                continue
+        sorted_projects = sorted(projects, key=lambda d: d["rawTime"])
 
-            for i in range(total):
-                if i == total - 1 or projects[i]["rawTime"] > time:
-                    projects.insert(i, new_project)
-                    break
-
-
-        self._latest_projects = projects
+        self._latest_projects = sorted_projects
