@@ -63,11 +63,11 @@ class Hackatime (ApiTemplate):
 
             time_str: str = ""
 
-            if hours >= 168:
-                pass
             if days >= 7:
                 continue
-            if hours >= 1:
+            if days >= 1:
+                time_str = f"{days}d ago"
+            elif hours >= 1:
                 time_str = f"{hours}h ago"
             elif minutes >= 15:
                 time_str = f"{minutes}m ago"
