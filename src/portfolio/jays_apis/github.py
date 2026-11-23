@@ -49,7 +49,7 @@ class Github (ApiTemplate):
             "q": "author:jayrickaby", "per_page": 1
         }
 
-        data = requests.get(f"{self._API_URL}/search/commits", params=params).json()
+        data = requests.get(f"{self._API_URL}/search/commits", params).json()
 
         if "total_count" in data:
             self._commit_count = data["total_count"]
@@ -61,7 +61,7 @@ class Github (ApiTemplate):
             "q": "author:jayrickaby is:pr is:merged", "per_page": 1
         }
 
-        data = requests.get(f"{self._API_URL}/search/issues", params=params).json()
+        data = requests.get(f"{self._API_URL}/search/issues", params).json()
 
         if "total_count" in data:
             self._merge_count = data["total_count"]

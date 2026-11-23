@@ -33,7 +33,12 @@ class GitGud (ApiTemplate):
         return self._repository_count
 
     def _refresh_commit_count(self):
-        data = requests.get(f"{self._API_URL}/users/{self._USER_ID}/events?action=pushed&per_page=1").headers
+        params = {
+            "action": "pushed",
+            "per_page": 1
+        }
+
+        data = requests.get(f"{self._API_URL}/users/{self._USER_ID}/events", params).headers
 
         if "x-total" in data:
             self._commit_count = int(data["x-total"])
@@ -41,7 +46,13 @@ class GitGud (ApiTemplate):
             self._commit_count = 0
 
     def _refresh_merge_count(self):
-        data = requests.get(f"{self._API_URL}/merge_requests?author_id={self._USER_ID}&scope=all&per_page=1").headers
+        params = {
+            "author_id" : self._USER_ID,
+            "per_page": 1,
+            "scope": "all"
+        }
+
+        data = requests.get(f"{self._API_URL}/merge_requests", params).headers
 
         if "x-total" in data:
             self._merge_count = int(data["x-total"])
@@ -49,7 +60,11 @@ class GitGud (ApiTemplate):
             self._merge_count = 0
 
     def _refresh_repository_count(self) -> None:
-        data = requests.get(f"{self._API_URL}/users/{self._USER_ID}/projects?per_page=1").headers
+        params = {
+            "per_page": 1
+        }
+
+        data = requests.get(f"{self._API_URL}/users/{self._USER_ID}/projects", params).headers
 
         if "x-total" in data:
             self._repository_count = int(data["x-total"])
