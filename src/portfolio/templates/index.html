@@ -71,13 +71,29 @@
                         <span class="tooltip">
                             {{github_repo_count + gitgud_repo_count}}
                             <span class="tooltiptext">
+                                Github: {{github_repo_count}}<br>
+                                GitGud: {{gitgud_repo_count}}
+                            </span>
+                        </span>
+                    </td>
+                    <td>
+                        <span class="tooltip">
+                            {{github_commit_count + gitgud_commit_count}}
+                            <span class="tooltiptext">
                                 Github: {{github_commit_count}}<br>
                                 GitGud: {{gitgud_commit_count}}
                             </span>
                         </span>
                     </td>
-                    <td><span class="tooltip">{{github_commit_count + gitgud_commit_count}}<span class="tooliptext"></span></span></td>
-                    <td><span class="tooltip">{{github_merge_count + gitgud_merge_count}}<span class="tooliptext"></span></span></td>
+                    <td>
+                        <span class="tooltip">
+                            {{github_merge_count + gitgud_merge_count}}
+                            <span class="tooltiptext">
+                                Github: {{github_merge_count}}<br>
+                                GitGud: {{gitgud_merge_count}}
+                            </span>
+                        </span>
+                    </td>
                 </tr>
             </table>
         </div>
